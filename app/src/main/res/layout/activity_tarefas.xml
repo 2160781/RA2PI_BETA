@@ -30,15 +30,5 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="29dp" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="117dp"
-        android:layout_height="102dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/errado" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

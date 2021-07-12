@@ -26,9 +26,9 @@ public class activity_tarefas extends AppCompatActivity {
     boolean estadoBoton;
     Button boton;
     TextView textV;
-    ImageView ver_imagen;
     int numeroPlano = 0;
     int posicao = 0;
+    String estado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +38,19 @@ public class activity_tarefas extends AppCompatActivity {
 
         estadoBoton=true;
         boton=findViewById(R.id.Button);
-        ver_imagen=findViewById(R.id.imageView3);
         textV= findViewById(R.id.textView);
 
         numeroPlano = getIntent().getIntExtra("NumeroPlano",0);
-        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,posicao)+":"+PlayActivity.Main.dadosApp_.getFeito(numeroPlano,0));
 
         if(PlayActivity.Main.dadosApp_.getFeito(numeroPlano,0) == false){
-            ver_imagen.setImageResource(R.drawable.errado);
+            estado = "Por fazer";
         }else{
-            ver_imagen.setImageResource(R.drawable.certo);
+            estado = "Feito";
         }
+
+        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,posicao)+":"
+                + estado);
+
     }
 
     //Metodos
@@ -63,13 +65,14 @@ public class activity_tarefas extends AppCompatActivity {
                 if (action == KeyEvent.ACTION_DOWN) {
                     if(posicao<PlayActivity.Main.dadosApp_.getNumeroTarefasDePlano(numeroPlano)-1){
                         posicao++;
-                        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,posicao)+":");
 
-                        if(PlayActivity.Main.dadosApp_.getFeito(numeroPlano,posicao) == false){
-                            ver_imagen.setImageResource(R.drawable.errado);
+                        if(PlayActivity.Main.dadosApp_.getFeito(numeroPlano, posicao) == false){
+                            estado = "Por fazer";
                         }else{
-                            ver_imagen.setImageResource(R.drawable.certo);
+                            estado = "Feito";
                         }
+                        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,
+                                posicao)+":" + estado);
                         estadoBoton= false;
                     }
                 }
@@ -79,13 +82,17 @@ public class activity_tarefas extends AppCompatActivity {
                 if (action == KeyEvent.ACTION_DOWN) {
                     if(posicao>0) {
                         posicao--;
-                        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,posicao) + ":" );
-                        estadoBoton = false;
-                        if (PlayActivity.Main.dadosApp_.getFeito(numeroPlano,posicao) == false) {
-                            ver_imagen.setImageResource(R.drawable.errado);
-                        } else {
-                            ver_imagen.setImageResource(R.drawable.certo);
+
+
+                        if(PlayActivity.Main.dadosApp_.getFeito(numeroPlano,posicao) == false){
+                            estado = "Por fazer";
+                        }else{
+                            estado = "Feito";
                         }
+
+                        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,posicao)
+                                + ":" + estado);
+                        estadoBoton = false;
                     }
                 }
                 return true;
@@ -96,7 +103,7 @@ public class activity_tarefas extends AppCompatActivity {
                     int position = posicao;
                     if(PlayActivity.Main.dadosApp_.getFeito(numeroPlano,position) == false){
                         PlayActivity.Main.dadosApp_.marcarFeito(numeroPlano,position);
-                        ver_imagen.setImageResource(R.drawable.certo);
+                        estado = "Feito";
                         updateJSON(numeroPlano,position,true);
                     }
                 }
@@ -108,8 +115,7 @@ public class activity_tarefas extends AppCompatActivity {
                     int position = posicao;
                     if(PlayActivity.Main.dadosApp_.getFeito(numeroPlano,position) == true){
                         PlayActivity.Main.dadosApp_.marcarErrado(numeroPlano,position);
-                        ver_imagen.setImageResource(R.drawable.errado);
-
+                        estado = "Por fazer";
                         updateJSON(numeroPlano,position,false);
                     }
                 }
