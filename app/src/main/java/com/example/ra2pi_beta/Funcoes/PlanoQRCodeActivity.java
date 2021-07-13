@@ -34,9 +34,9 @@ public class PlanoQRCodeActivity extends AppCompatActivity {
         Intent intent = null;
 
 
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < PlayActivity.Main.dadosApp_.getNumeroPlanos(); i++){
 
-            plano = "" + PlayActivity.Main.dadosApp_.getTextPlano(i);
+            plano = PlayActivity.Main.dadosApp_.getTextPlano(i);
 
             if (plano.equals(dados)) {
                 Intent Plano = new Intent(this,

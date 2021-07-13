@@ -1,6 +1,6 @@
 [
 	{
-		"nome":"Receita de bolo",
+		"nome":"Receita",
 		"passos": [ {"texto":"1. Passo --> Preparação de ingredientes", "feito": false},
 			    {"texto":"2. Passo --> Mistura de ingredientes", "feito": false},
 			    {"texto":"3. Passo --> Coloque o bolo no forno", "feito": false},
