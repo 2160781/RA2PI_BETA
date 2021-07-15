@@ -95,19 +95,14 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 position=position;
-                if(position == 0){
-                    Intent Tarefa1 = new Intent(view.getContext(),
-                            activity_tarefas.class);
-                    Tarefa1.putExtra("NumeroPlano",position);
-                    startActivity(Tarefa1);
-                }
 
-                if (position == 1) {
-
-                    Intent Tarefa2 = new Intent(view.getContext(),
-                            activity_tarefas.class);
-                    Tarefa2.putExtra("NumeroPlano",position);
-                    startActivity(Tarefa2);
+                for(int p = 0; p < PlayActivity.Main.dadosApp_.getNumeroPlanos(); p++) {
+                    if(p == position){
+                        Intent Tarefa = new Intent(view.getContext(),
+                                activity_tarefas.class);
+                        Tarefa.putExtra("NumeroPlano",position);
+                        startActivity(Tarefa);
+                    }
                 }
             }
         });

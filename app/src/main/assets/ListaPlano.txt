@@ -12,5 +12,12 @@
 			    {"texto":"2. Preparação de terreno", "feito": false},
 			    {"texto":"3. Plantar trigo", "feito": false},
 			    {"texto":"4. Obter colheita", "feito": false} ]
-	}
+	},
+     	{
+     		"nome":"Plantação de trigo",
+     		"passos": [ {"texto":"1. Compra de terreno", "feito": false},
+     			    {"texto":"2. Preparação de terreno", "feito": false},
+     			    {"texto":"3. Plantar trigo", "feito": false},
+     			    {"texto":"4. Obter colheita", "feito": false} ]
+     	}
 ]
