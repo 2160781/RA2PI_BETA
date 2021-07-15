@@ -29,6 +29,7 @@ public class activity_tarefas extends AppCompatActivity {
     int numeroPlano = 0;
     int posicao = 0;
     String estado;
+    ImageView ver_imagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +40,16 @@ public class activity_tarefas extends AppCompatActivity {
         estadoBoton=true;
         boton=findViewById(R.id.Button);
         textV= findViewById(R.id.textView);
+        ver_imagen=findViewById(R.id.imageView);
 
         numeroPlano = getIntent().getIntExtra("NumeroPlano",0);
 
         if(PlayActivity.Main.dadosApp_.getFeito(numeroPlano,0) == false){
             estado = "Por fazer";
+            ver_imagen.setImageResource(R.drawable.errado);
         }else{
             estado = "Feito";
+            ver_imagen.setImageResource(R.drawable.certo);
         }
 
         textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,posicao)+":"
@@ -65,14 +69,17 @@ public class activity_tarefas extends AppCompatActivity {
                 if (action == KeyEvent.ACTION_DOWN) {
                     if(posicao<PlayActivity.Main.dadosApp_.getNumeroTarefasDePlano(numeroPlano)-1){
                         posicao++;
+                        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,
+                                posicao)+" : " + estado);
 
                         if(PlayActivity.Main.dadosApp_.getFeito(numeroPlano, posicao) == false){
                             estado = "Por fazer";
+                            ver_imagen.setImageResource(R.drawable.errado);
                         }else{
                             estado = "Feito";
+                            ver_imagen.setImageResource(R.drawable.certo);
                         }
-                        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,
-                                posicao)+":" + estado);
+
                         estadoBoton= false;
                     }
                 }
@@ -82,17 +89,18 @@ public class activity_tarefas extends AppCompatActivity {
                 if (action == KeyEvent.ACTION_DOWN) {
                     if(posicao>0) {
                         posicao--;
-
-
+                        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,posicao)
+                                + " : " + estado);
+                        estadoBoton = false;
                         if(PlayActivity.Main.dadosApp_.getFeito(numeroPlano,posicao) == false){
                             estado = "Por fazer";
+                            ver_imagen.setImageResource(R.drawable.errado);
                         }else{
                             estado = "Feito";
+                            ver_imagen.setImageResource(R.drawable.certo);
                         }
 
-                        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,posicao)
-                                + ":" + estado);
-                        estadoBoton = false;
+
                     }
                 }
                 return true;
@@ -103,6 +111,7 @@ public class activity_tarefas extends AppCompatActivity {
                     int position = posicao;
                     if(PlayActivity.Main.dadosApp_.getFeito(numeroPlano,position) == false){
                         PlayActivity.Main.dadosApp_.marcarFeito(numeroPlano,position);
+                        ver_imagen.setImageResource(R.drawable.certo);
                         estado = "Feito";
                         updateJSON(numeroPlano,position,true);
                     }
@@ -115,6 +124,7 @@ public class activity_tarefas extends AppCompatActivity {
                     int position = posicao;
                     if(PlayActivity.Main.dadosApp_.getFeito(numeroPlano,position) == true){
                         PlayActivity.Main.dadosApp_.marcarErrado(numeroPlano,position);
+                        ver_imagen.setImageResource(R.drawable.errado);
                         estado = "Por fazer";
                         updateJSON(numeroPlano,position,false);
                     }

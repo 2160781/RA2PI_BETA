@@ -12,12 +12,5 @@
 			    {"texto":"2. Passo --> Preparação de terreno", "feito": false},
 			    {"texto":"3. Passo --> Plantar trigo", "feito": false},
 			    {"texto":"4. Passo --> Obter colheita", "feito": false} ]
-	},
-     	{
-     		"nome":"aveia",
-     		"passos": [ {"texto":"1. Passo --> Compra de terreno", "feito": false},
-     			    {"texto":"2. Passo --> Preparação de terreno", "feito": false},
-     			    {"texto":"3. Passo --> Plantar trigo", "feito": false},
-     			    {"texto":"4. Passo --> Obter colheita", "feito": false} ]
-     	}
+	}
 ]
