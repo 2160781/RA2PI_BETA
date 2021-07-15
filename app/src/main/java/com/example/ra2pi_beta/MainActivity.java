@@ -1,7 +1,9 @@
 package com.example.ra2pi_beta;
 
 import android.content.Intent;
+import android.hardware.Camera;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,13 +20,13 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     ListView listViewInicial;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         listviewInicial();
-
     }
 
     public boolean listviewInicial() {
@@ -71,14 +73,15 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.listview);
 
-        String[] values = new String[] {
-                "Receita de bolo - "
-                        + PlayActivity.Main.dadosApp_.getNumeroPassosFeitos(0)
-                        + " de " + PlayActivity.Main.dadosApp_.getSizeListPassos(0)
-                , "Plantação de trigo - "
-                + PlayActivity.Main.dadosApp_.getNumeroPassosFeitos(1)
-                + " de " + PlayActivity.Main.dadosApp_.getSizeListPassos(1)
-        };
+        int numP = PlayActivity.Main.dadosApp_.getNumeroPlanos();
+
+        String[] values = new String[numP];
+
+        for(int i = 0; i < PlayActivity.Main.dadosApp_.getNumeroPlanos(); i++) {
+            values[i] = "" + PlayActivity.Main.dadosApp_.getTextPlano(i) + " - "
+                    + PlayActivity.Main.dadosApp_.getNumeroPassosFeitos(i)
+                    + " de " + PlayActivity.Main.dadosApp_.getSizeListPassos(i);
+        }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,

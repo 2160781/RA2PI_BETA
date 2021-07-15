@@ -74,32 +74,7 @@ public class LoginQRCodeActivity extends AppCompatActivity {
         usernames.add("onilferreira");
 
         FileInputStream fis = null;
-        /*
-        try {
-            fis = openFileInput(FILE_NAME);
-            InputStreamReader isr  =new InputStreamReader(fis);
-            BufferedReader br = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            String text;
 
-            while((text = br.readLine()) != null){
-                sb.append(text).append("\n");
-            }
-            System.out.println(text);
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if (fis != null){
-                try{
-                    fis.close();
-                }catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-         */
         return usernames;
     }
 
