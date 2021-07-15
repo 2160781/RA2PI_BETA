@@ -157,8 +157,6 @@ public class activity_tarefas extends AppCompatActivity {
             json = new String(buffer, "UTF-8");
             JSONArray jsonArray = new JSONArray(json);
 
-
-
             for(int i = 0; i<jsonArray.length();i++){
 
                 if (i == plano){
@@ -172,25 +170,15 @@ public class activity_tarefas extends AppCompatActivity {
 
                         if (tarefa == o){
                             itemArr.put("feito",estado);
-
                             itemARR.put("passos",passos);
-
-
 
                             File targetFile = new File("src//main//assets//ListaPlano.txt");
                             //OutputStream outStream = new FileOutputStream(targetFile);
                             System.out.println(jsonArray);
-
-
                         }
                     }
-
                 }
-
             }
-
-
-
         }catch (IOException e){
             e.printStackTrace();
         }catch (JSONException e){
