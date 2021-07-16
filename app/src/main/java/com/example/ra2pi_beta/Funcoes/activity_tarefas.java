@@ -69,8 +69,7 @@ public class activity_tarefas extends AppCompatActivity {
                 if (action == KeyEvent.ACTION_DOWN) {
                     if(posicao<PlayActivity.Main.dadosApp_.getNumeroTarefasDePlano(numeroPlano)-1){
                         posicao++;
-                        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,
-                                posicao)+" : " + estado);
+
 
                         if(PlayActivity.Main.dadosApp_.getFeito(numeroPlano, posicao) == false){
                             estado = "Por fazer";
@@ -79,6 +78,8 @@ public class activity_tarefas extends AppCompatActivity {
                             estado = "Feito";
                             ver_imagen.setImageResource(R.drawable.certo);
                         }
+                        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,
+                                posicao)+" : " + estado);
 
                         estadoBoton= false;
                     }
@@ -89,8 +90,6 @@ public class activity_tarefas extends AppCompatActivity {
                 if (action == KeyEvent.ACTION_DOWN) {
                     if(posicao>0) {
                         posicao--;
-                        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,posicao)
-                                + " : " + estado);
                         estadoBoton = false;
                         if(PlayActivity.Main.dadosApp_.getFeito(numeroPlano,posicao) == false){
                             estado = "Por fazer";
@@ -99,7 +98,8 @@ public class activity_tarefas extends AppCompatActivity {
                             estado = "Feito";
                             ver_imagen.setImageResource(R.drawable.certo);
                         }
-
+                        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,posicao)
+                                + " : " + estado);
 
                     }
                 }
@@ -113,6 +113,8 @@ public class activity_tarefas extends AppCompatActivity {
                         PlayActivity.Main.dadosApp_.marcarFeito(numeroPlano,position);
                         ver_imagen.setImageResource(R.drawable.certo);
                         estado = "Feito";
+                        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,posicao)
+                                + " : " + estado);
                         updateJSON(numeroPlano,position,true);
                     }
                 }
@@ -126,6 +128,8 @@ public class activity_tarefas extends AppCompatActivity {
                         PlayActivity.Main.dadosApp_.marcarErrado(numeroPlano,position);
                         ver_imagen.setImageResource(R.drawable.errado);
                         estado = "Por fazer";
+                        textV.setText(PlayActivity.Main.dadosApp_.getTextTarefa(numeroPlano,posicao)
+                                + " : " + estado);
                         updateJSON(numeroPlano,position,false);
                     }
                 }
