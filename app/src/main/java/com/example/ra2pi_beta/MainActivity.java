@@ -1,9 +1,8 @@
 package com.example.ra2pi_beta;
 
 import android.content.Intent;
-import android.hardware.Camera;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,14 +11,21 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ra2pi_beta.Funcoes.PlanoQRCodeActivity;
+import com.example.ra2pi_beta.Funcoes.Resposta;
 import com.example.ra2pi_beta.Funcoes.activity_tarefas;
+import com.example.ra2pi_beta.Informacao.Plano;
 import com.example.ra2pi_beta.Informacao.PlayActivity;
+
+import java.text.Normalizer;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
     ListView listViewInicial;
 
+    private static final int RECONOCEDOR_VOZ = 7;
+    private ArrayList <Resposta> respostas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +115,64 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
+    @Override
+    protected void onActivityResult ( int requestCode, int resultCode, Intent data ) {
+        super.onActivityResult( requestCode, resultCode, data );
+
+        if (resultCode == RESULT_OK && requestCode == RECONOCEDOR_VOZ) {
+            ArrayList<String> reconocido =
+                    data.getStringArrayListExtra( RecognizerIntent.EXTRA_RESULTS );
+            String escuchado = reconocido.get( 0 );
+            prepararResposta( escuchado );
+        }
+    }
+
+    private void prepararResposta ( String ouvir ) {
+        String normalizar = Normalizer.normalize( ouvir, Normalizer.Form.NFD );
+        String sintilde = normalizar.replaceAll( "[^\\p{ASCII}]", "" );
+
+
+        for (int i = 0; i < respostas.size(); i++) {
+            int resultado = sintilde.toLowerCase().indexOf( respostas.get( i ).getFala() );
+            if (resultado != -1) {
+                responder( respostas.get( i ) );
+                return;
+            }
+        }
+
+    }
+
+    private void responder ( Resposta resposta ) {
+        startActivity( resposta.getIntent() );
+    }
+
+
+    private void inicializar () {
+
+        respostas = provarDados();
+
+    }
+
+    private ArrayList <Resposta> provarDados() {
+        ArrayList <Resposta> resposta = new ArrayList <>();
+
+        resposta.add( new Resposta( "scan",
+                "",new Intent(this,
+               PlanoQRCodeActivity.class)));
+
+
+        return respostas;
+    }
+
+
+    public void Falar ( View v ) {
+        Intent falar = new Intent(
+                RecognizerIntent.ACTION_RECOGNIZE_SPEECH );
+        falar.putExtra( RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                "es-MX" );
+        startActivityForResult( falar, RECONOCEDOR_VOZ );
+    }
 
 }
 
