@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent falar = new Intent( RecognizerIntent.ACTION_RECOGNIZE_SPEECH );
+        falar.putExtra( RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-MX" );
+        startActivityForResult( falar, RECONOCEDOR_VOZ );
         listviewInicial();
     }
 
@@ -43,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
         String[] values = new String[] {
                 "Leitura de Qr Code",
-                "Lista planos"
+                "Lista planos",
+                "Microfone"
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
@@ -66,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if (position == 1) {
                     listviewTarefas();
+                }
+                if (position == 2) {
+                    Intent falar = new Intent( RecognizerIntent.ACTION_RECOGNIZE_SPEECH );
+                    falar.putExtra( RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-MX" );
+                    startActivityForResult( falar, RECONOCEDOR_VOZ );
                 }
             }
         });
