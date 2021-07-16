@@ -3,12 +3,14 @@ package com.example.ra2pi_beta.Funcoes;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ra2pi_beta.Informacao.PlayActivity;
+import com.example.ra2pi_beta.MainActivity;
 import com.example.ra2pi_beta.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -34,23 +36,23 @@ public class PlanoQRCodeActivity extends AppCompatActivity {
         Intent intent = null;
 
 
-        for(int i = 0; i < PlayActivity.Main.dadosApp_.getNumeroPlanos(); i++){
+        for (int i = 0; i < PlayActivity.Main.dadosApp_.getNumeroPlanos(); i++) {
 
             plano = PlayActivity.Main.dadosApp_.getTextPlano(i);
 
             if (plano.equals(dados)) {
                 Intent Plano = new Intent(this,
                         activity_tarefas.class);
-                       Plano.putExtra("NumeroPlano", i);
+                Plano.putExtra("NumeroPlano", i);
                 startActivity(Plano);
 
             }
         }
 
 
-        if (intent != null){
+        if (intent != null) {
             startActivity(intent);
-        }else{
+        } else {
             Context context = getApplicationContext();
             CharSequence text = "QRCode invalido!";
             int duration = Toast.LENGTH_SHORT;
@@ -61,5 +63,6 @@ public class PlanoQRCodeActivity extends AppCompatActivity {
         }
 
     }
+
 
 }

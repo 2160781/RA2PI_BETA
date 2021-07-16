@@ -1,16 +1,16 @@
 [
 	{
 		"nome":"Receita",
-		"passos": [ {"texto":"1. Preparação de ingredientes", "feito": false},
-			    {"texto":"2. Mistura de ingredientes", "feito": false},
-			    {"texto":"3. Coloque o bolo no forno", "feito": false},
-			    {"texto":"4. Finalizar o bolo", "feito": false} ]
+		"passos": [ {"texto":"Preparação de ingredientes", "feito": false},
+			    {"texto":"Mistura de ingredientes", "feito": false},
+			    {"texto":"Coloque o bolo no forno", "feito": false},
+			    {"texto":"Finalizar o bolo", "feito": false} ]
 	},
 	{
 		"nome":"Plantação de trigo",
-		"passos": [ {"texto":"1. Compra de terreno", "feito": false},
-			    {"texto":"2. Preparação de terreno", "feito": false},
-			    {"texto":"3. Plantar trigo", "feito": false},
-			    {"texto":"4. Obter colheita", "feito": false} ]
+		"passos": [ {"texto":"Compra de terreno", "feito": false},
+			    {"texto":"Preparação de terreno", "feito": false},
+			    {"texto":"Plantar trigo", "feito": false},
+			    {"texto":"Obter colheita", "feito": false} ]
 	}
 ]
