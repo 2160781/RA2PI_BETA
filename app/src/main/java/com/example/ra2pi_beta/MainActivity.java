@@ -31,14 +31,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        inicializar();
-        Intent Falar = new Intent( RecognizerIntent.ACTION_RECOGNIZE_SPEECH );
-        Falar.putExtra( RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-MX" );
-        startActivityForResult( Falar, RECONOCEDOR_VOZ );
+
+       Intent Falar = new Intent( RecognizerIntent.ACTION_RECOGNIZE_SPEECH );
+       Falar.putExtra( RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-MX" );
+       startActivityForResult( Falar, RECONOCEDOR_VOZ );
         listviewInicial();
     }
 
     public boolean listviewInicial() {
+
+        inicializar();
 
         setContentView(R.layout.activity_lisviewinicial);
 
@@ -55,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
                 android.R.id.text1,values);
 
         listViewInicial.setAdapter(adapter);
-
 
         listViewInicial.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -188,28 +189,7 @@ public class MainActivity extends AppCompatActivity {
                 listviewTarefas(),new Intent(this, null)));
 
 
-
-
-/*
-        for(int i = 0; i < resposta.size(); i++){
-            funcao = resposta.get(i).getFala();
-            if(funcao.equals("tarefas") || funcao.equals("planos")){
-                listviewTarefas();
-            }
-        }
-*/
-
         return respostas;
     }
-
-
-    public void Falar ( View v ) {
-        Intent falar = new Intent(
-                RecognizerIntent.ACTION_RECOGNIZE_SPEECH );
-        falar.putExtra( RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                "es-MX" );
-        startActivityForResult( falar, RECONOCEDOR_VOZ );
-    }
-
 }
 
