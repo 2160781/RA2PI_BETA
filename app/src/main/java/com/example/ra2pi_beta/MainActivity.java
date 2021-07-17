@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int RECONOCEDOR_VOZ = 7;
     private ArrayList <Resposta> respostas;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean listviewInicial() {
 
-        inicializar();
+       // inicializar();
 
         setContentView(R.layout.activity_lisviewinicial);
 
@@ -157,13 +158,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(resposta.getIntent());
     }
 
-
-    private void inicializar() {
+//mudar colocar dentro da resposta  a resposta e na fala o que é dito utilizar um set e um get para
+    //obter/mudificar a resposta
+   /* private void inicializar() {
 
         respostas = provarDados();
 
     }
-
+*/
     private ArrayList <Resposta> provarDados() {
         ArrayList <Resposta> resposta = new ArrayList <>();
         String funcao;
