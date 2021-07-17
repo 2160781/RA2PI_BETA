@@ -167,15 +167,30 @@ public class MainActivity extends AppCompatActivity {
         ArrayList <Resposta> resposta = new ArrayList <>();
         String funcao;
 
+        //Navegção para o QR Code
         resposta.add( new Resposta( "scan",
                 "",new Intent(this,
                PlanoQRCodeActivity.class)));
+        resposta.add( new Resposta( "can",
+                "",new Intent(this,
+                PlanoQRCodeActivity.class)));
+        resposta.add( new Resposta( "qr",
+                "",new Intent(this,
+                PlanoQRCodeActivity.class)));
+        resposta.add( new Resposta( "code",
+                "",new Intent(this,
+                PlanoQRCodeActivity.class)));
+
+        //Navegação para o menu dos planos
         resposta.add( new Resposta( "tarefas",
                 "",new Intent(this, null)));
+        resposta.add( new Resposta( "planos",
+                "",new Intent(this, null)));
+
 
         for(int i = 0; i < resposta.size(); i++){
             funcao = resposta.get(i).getFala();
-            if(funcao.equals("tarefas")){
+            if(funcao.equals("tarefas") || funcao.equals("planos")){
                 listviewTarefas();
             }
         }
