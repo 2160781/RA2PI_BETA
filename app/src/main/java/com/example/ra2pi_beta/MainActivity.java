@@ -165,10 +165,20 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList <Resposta> provarDados() {
         ArrayList <Resposta> resposta = new ArrayList <>();
+        String funcao;
 
         resposta.add( new Resposta( "scan",
                 "",new Intent(this,
                PlanoQRCodeActivity.class)));
+        resposta.add( new Resposta( "tarefas",
+                "",new Intent(this, null)));
+
+        for(int i = 0; i < resposta.size(); i++){
+            funcao = resposta.get(i).getFala();
+            if(funcao.equals("tarefas")){
+                listviewTarefas();
+            }
+        }
 
 
         return respostas;
