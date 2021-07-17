@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Intent falar = new Intent( RecognizerIntent.ACTION_RECOGNIZE_SPEECH );
-        falar.putExtra( RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-MX" );
-        startActivityForResult( falar, RECONOCEDOR_VOZ );
+        inicializar();
+        Intent Falar = new Intent( RecognizerIntent.ACTION_RECOGNIZE_SPEECH );
+        Falar.putExtra( RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-MX" );
+        startActivityForResult( Falar, RECONOCEDOR_VOZ );
         listviewInicial();
     }
 
@@ -132,32 +132,32 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == RECONOCEDOR_VOZ) {
             ArrayList<String> reconocido =
                     data.getStringArrayListExtra( RecognizerIntent.EXTRA_RESULTS );
-            String escuchado = reconocido.get( 0 );
-            prepararResposta( escuchado );
+            String ouvir = reconocido.get(0);
+            prepararResposta(ouvir);
         }
     }
 
     private void prepararResposta ( String ouvir ) {
         String normalizar = Normalizer.normalize( ouvir, Normalizer.Form.NFD );
-        String sintilde = normalizar.replaceAll( "[^\\p{ASCII}]", "" );
+        String sintilde = normalizar.replaceAll("[^\\p{ASCII}]", "" );
 
 
         for (int i = 0; i < respostas.size(); i++) {
-            int resultado = sintilde.toLowerCase().indexOf( respostas.get( i ).getFala() );
+            int resultado = sintilde.toLowerCase().indexOf(respostas.get(i).getFala());
             if (resultado != -1) {
-                responder( respostas.get( i ) );
+                responder(respostas.get(i));
                 return;
             }
         }
 
     }
 
-    private void responder ( Resposta resposta ) {
-        startActivity( resposta.getIntent() );
+    private void responder (Resposta resposta) {
+        startActivity(resposta.getIntent());
     }
 
 
-    private void inicializar () {
+    private void inicializar() {
 
         respostas = provarDados();
 
