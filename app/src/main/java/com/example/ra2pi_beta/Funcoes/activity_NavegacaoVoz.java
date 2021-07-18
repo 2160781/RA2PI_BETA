@@ -78,6 +78,8 @@ public class activity_NavegacaoVoz extends AppCompatActivity implements TextToSp
         ArrayList <Resposta> respostas = new ArrayList <>();
         respostas.add( new Resposta( "scan", "  ",new Intent(this,
                 PlanoQRCodeActivity.class)));
+        respostas.add( new Resposta( "qr code", "  ",new Intent(this,
+                PlanoQRCodeActivity.class)));
         respostas.add( new Resposta( "inicio", " ",new Intent(this,
                 MainActivity.class)));
 
