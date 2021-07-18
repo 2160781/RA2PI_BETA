@@ -10,10 +10,10 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ra2pi_beta.Funcoes.Navegacao_Voz;
 import com.example.ra2pi_beta.Funcoes.PlanoQRCodeActivity;
 import com.example.ra2pi_beta.Funcoes.Resposta;
 import com.example.ra2pi_beta.Funcoes.activity_tarefas;
-import com.example.ra2pi_beta.Informacao.Plano;
 import com.example.ra2pi_beta.Informacao.PlayActivity;
 
 import java.text.Normalizer;
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     ListView listViewInicial;
 
-    private static final int RECONOCEDOR_VOZ = 7;
+    private static final int RECONHECEDOR_VOZ = 7;
     private ArrayList <Resposta> respostas;
 
 
@@ -35,14 +35,12 @@ public class MainActivity extends AppCompatActivity {
 
        Intent Falar = new Intent( RecognizerIntent.ACTION_RECOGNIZE_SPEECH );
        Falar.putExtra( RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-MX" );
-       startActivityForResult( Falar, RECONOCEDOR_VOZ );
+       startActivityForResult( Falar, RECONHECEDOR_VOZ);
         listviewInicial();
     }
 
     public boolean listviewInicial() {
-
-       // inicializar();
-
+        
         setContentView(R.layout.activity_lisviewinicial);
 
         listViewInicial = findViewById(R.id.listviewinicial);
@@ -74,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
                     listviewTarefas();
                 }
                 if (position == 2) {
-                    Intent falar = new Intent( RecognizerIntent.ACTION_RECOGNIZE_SPEECH );
-                    falar.putExtra( RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-MX" );
-                    startActivityForResult( falar, RECONOCEDOR_VOZ );
+                    Intent micro = new Intent(view.getContext(),
+                            Navegacao_Voz.class);
+                    startActivity(micro);
                 }
             }
         });
@@ -131,10 +129,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult ( int requestCode, int resultCode, Intent data ) {
         super.onActivityResult( requestCode, resultCode, data );
 
-        if (resultCode == RESULT_OK && requestCode == RECONOCEDOR_VOZ) {
-            ArrayList<String> reconocido =
+        if (resultCode == RESULT_OK && requestCode == RECONHECEDOR_VOZ) {
+            ArrayList<String> reconhecido =
                     data.getStringArrayListExtra( RecognizerIntent.EXTRA_RESULTS );
-            String ouvir = reconocido.get(0);
+            String ouvir = reconhecido.get(0);
             prepararResposta(ouvir);
         }
     }
