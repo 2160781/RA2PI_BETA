@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        inicializar();
        Intent Falar = new Intent( RecognizerIntent.ACTION_RECOGNIZE_SPEECH );
        Falar.putExtra( RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-MX" );
        startActivityForResult( Falar, RECONHECEDOR_VOZ);
@@ -158,12 +159,13 @@ public class MainActivity extends AppCompatActivity {
 
 //mudar colocar dentro da resposta  a resposta e na fala o que é dito utilizar um set e um get para
     //obter/mudificar a resposta
-   /* private void inicializar() {
+
+    private void inicializar() {
 
         respostas = provarDados();
 
     }
-*/
+
     private ArrayList <Resposta> provarDados() {
         ArrayList <Resposta> resposta = new ArrayList <>();
         String funcao;
