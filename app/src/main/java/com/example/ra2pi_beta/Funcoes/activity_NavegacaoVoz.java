@@ -25,12 +25,14 @@ public class activity_NavegacaoVoz extends AppCompatActivity implements TextToSp
     private TextToSpeech ler;
     private Object TextView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navegacaovoz);
         inicializar();
     }
+
 
     @Override
     protected void onActivityResult ( int requestCode, int resultCode, Intent data ) {
@@ -56,7 +58,6 @@ public class activity_NavegacaoVoz extends AppCompatActivity implements TextToSp
                 return;
             }
         }
-
     }
 
     private void responder ( Resposta resposta ) {
