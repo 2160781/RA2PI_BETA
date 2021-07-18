@@ -15,9 +15,6 @@ import com.example.ra2pi_beta.R;
 import java.text.Normalizer;
 import java.util.ArrayList;
 
-//import android.support.v7.app.AppCompatActivity;
-
-
 public class activity_NavegacaoVoz extends AppCompatActivity implements TextToSpeech.OnInitListener {
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 2;
     private static final int RECONOCEDOR_VOZ = 7;
