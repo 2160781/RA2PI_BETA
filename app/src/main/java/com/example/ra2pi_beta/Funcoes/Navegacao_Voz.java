@@ -69,11 +69,9 @@ public class Navegacao_Voz extends AppCompatActivity implements TextToSpeech.OnI
     private ArrayList <Resposta> provarDados () {
         ArrayList <Resposta> resposta = new ArrayList <>();
         resposta.add( new Resposta( "scan",
-                null,
                 new Intent(this,
                         PlanoQRCodeActivity.class)));
         resposta.add( new Resposta( "inicio",
-                null,
                 new Intent(this,
                 MainActivity.class)));
 
@@ -87,7 +85,6 @@ public class Navegacao_Voz extends AppCompatActivity implements TextToSpeech.OnI
         switch (keyCode) {
             case KeyEvent.KEYCODE_ENTER:
                 if (action == KeyEvent.ACTION_DOWN) {
-                    //TODO
                         Intent falar = new Intent(
                                 RecognizerIntent.ACTION_RECOGNIZE_SPEECH );
                         falar.putExtra(

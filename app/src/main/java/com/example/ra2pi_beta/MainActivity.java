@@ -170,25 +170,25 @@ public class MainActivity extends AppCompatActivity {
 
         //Navegção para o QR Code
         resposta.add( new Resposta( "scan",
-                null, new Intent(this,
+                new Intent(this,
                PlanoQRCodeActivity.class)));
-        resposta.add( new Resposta( "can", null
-                ,new Intent(this,
+        resposta.add( new Resposta( "can",
+                new Intent(this,
                 PlanoQRCodeActivity.class)));
         resposta.add( new Resposta( "qr",
-                null,new Intent(this,
+                new Intent(this,
                 PlanoQRCodeActivity.class)));
         resposta.add( new Resposta( "code",
-                null,new Intent(this,
+                new Intent(this,
                 PlanoQRCodeActivity.class)));
 
         //Navegação para o menu dos planos
-        resposta.add( new Resposta( "tarefas",
+   /*     resposta.add( new Resposta( "tarefas",
                 listviewTarefas(),new Intent(this, null)));
         resposta.add( new Resposta( "planos",
                 listviewTarefas(),new Intent(this, null)));
 
-
+*/
         return respostas;
     }
 }
