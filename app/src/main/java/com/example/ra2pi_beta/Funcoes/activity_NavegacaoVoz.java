@@ -16,13 +16,15 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 
 public class activity_NavegacaoVoz extends AppCompatActivity implements TextToSpeech.OnInitListener {
+
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 2;
-    private static final int RECONOCEDOR_VOZ = 7;
+    private static final int RECONHECEDOR_VOZ = 7;
     private TextView ouve;
     private TextView resposta;
     private ArrayList <Resposta> respostas;
     private TextToSpeech ler;
     private Object TextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +36,7 @@ public class activity_NavegacaoVoz extends AppCompatActivity implements TextToSp
     protected void onActivityResult ( int requestCode, int resultCode, Intent data ) {
         super.onActivityResult( requestCode, resultCode, data );
 
-        if (resultCode == RESULT_OK && requestCode == RECONOCEDOR_VOZ) {
+        if (resultCode == RESULT_OK && requestCode == RECONHECEDOR_VOZ) {
             ArrayList<String> reconocido =
                     data.getStringArrayListExtra( RecognizerIntent.EXTRA_RESULTS );
             String escuchado = reconocido.get( 0 );
@@ -91,7 +93,7 @@ public class activity_NavegacaoVoz extends AppCompatActivity implements TextToSp
                 if (action == KeyEvent.ACTION_DOWN) {
                         Intent falar = new Intent( RecognizerIntent.ACTION_RECOGNIZE_SPEECH );
                         falar.putExtra( RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-MX" );
-                        startActivityForResult( falar, RECONOCEDOR_VOZ );
+                        startActivityForResult( falar, RECONHECEDOR_VOZ);
                 }
                 return true;
             default:
