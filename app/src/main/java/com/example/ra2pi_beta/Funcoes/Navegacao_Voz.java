@@ -5,20 +5,15 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.view.KeyEvent;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.ra2pi_beta.MainActivity;
-
 import java.text.Normalizer;
 import java.util.ArrayList;
-
-//import android.support.v7.app.AppCompatActivity;
 
 
 public class Navegacao_Voz extends AppCompatActivity implements TextToSpeech.OnInitListener {
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 2;
-    private static final int RECONOCEDOR_VOZ = 7;
+    private static final int Reconhecedor_Voz = 7;
     private String ouvir;
     private ArrayList <Resposta> respostas;
     private TextToSpeech ler;
@@ -33,7 +28,7 @@ public class Navegacao_Voz extends AppCompatActivity implements TextToSpeech.OnI
     protected void onActivityResult ( int requestCode, int resultCode, Intent data ) {
         super.onActivityResult( requestCode, resultCode, data );
 
-        if (resultCode == RESULT_OK && requestCode == RECONOCEDOR_VOZ) {
+        if (resultCode == RESULT_OK && requestCode == Reconhecedor_Voz) {
             ArrayList<String> reconhecido =
                     data.getStringArrayListExtra(
                             RecognizerIntent.EXTRA_RESULTS );
@@ -51,9 +46,9 @@ public class Navegacao_Voz extends AppCompatActivity implements TextToSpeech.OnI
 
         for (int i = 0; i < respostas.size(); i++) {
             int resultado = sint.toLowerCase().indexOf(
-                    respostas.get( i ).getFala());
+                    respostas.get(i).getFala());
             if (resultado != -1) {
-                responder(respostas.get( i ));
+                responder(respostas.get(i));
                 return;
             }
         }
@@ -98,7 +93,7 @@ public class Navegacao_Voz extends AppCompatActivity implements TextToSpeech.OnI
                         falar.putExtra(
                                 RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-MX" );
                         startActivityForResult(
-                                falar, RECONOCEDOR_VOZ );
+                                falar, Reconhecedor_Voz);
                 }
                 return true;
             default:
