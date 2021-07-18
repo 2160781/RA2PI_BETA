@@ -4,10 +4,12 @@ import android.content.Intent;
 
 public class Resposta {
     private String fala;
+    private String resposta;
     private Intent intent;
 
-    public Resposta(String fala, Intent intent ) {
+    public Resposta(String fala, String resposta, Intent intent ) {
         this.fala = fala;
+        this.resposta = resposta;
         this.intent = intent;
 
     }
@@ -17,6 +19,9 @@ public class Resposta {
         return fala;
     }
 
+    public String getResposta() {
+        return resposta;
+    }
 
     public Intent getIntent () {
         return intent;

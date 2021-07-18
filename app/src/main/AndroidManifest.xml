@@ -12,6 +12,7 @@
         android:theme="@style/Theme.RA2PI_BETA">
         <activity android:name=".Funcoes.PlanoQRCodeActivity"></activity>
         <activity android:name=".Funcoes.LoginQRCodeActivity" />
+        <activity android:name=".Funcoes.activity_NavegacaoVoz" />
         <activity android:name=".MainActivity"/>
         <activity android:name=".Funcoes.activity_tarefas" />
         <activity android:name=".Informacao.PlayActivity">

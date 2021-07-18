@@ -2,7 +2,6 @@ package com.example.ra2pi_beta;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,33 +9,21 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.ra2pi_beta.Funcoes.Navegacao_Voz;
 import com.example.ra2pi_beta.Funcoes.PlanoQRCodeActivity;
-import com.example.ra2pi_beta.Funcoes.Resposta;
+import com.example.ra2pi_beta.Funcoes.activity_NavegacaoVoz;
 import com.example.ra2pi_beta.Funcoes.activity_tarefas;
 import com.example.ra2pi_beta.Informacao.PlayActivity;
-
-import java.text.Normalizer;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
     ListView listViewInicial;
 
-    private static final int RECONHECEDOR_VOZ = 7;
-    private ArrayList <Resposta> respostas;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        inicializar();
-       Intent Falar = new Intent( RecognizerIntent.ACTION_RECOGNIZE_SPEECH );
-       Falar.putExtra( RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-MX" );
-       startActivityForResult( Falar, RECONHECEDOR_VOZ);
         listviewInicial();
     }
 
@@ -74,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (position == 2) {
                     Intent micro = new Intent(view.getContext(),
-                            Navegacao_Voz.class);
+                            activity_NavegacaoVoz.class);
                     startActivity(micro);
                 }
             }
@@ -125,73 +112,5 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
-    @Override
-    protected void onActivityResult ( int requestCode, int resultCode, Intent data ) {
-        super.onActivityResult( requestCode, resultCode, data );
-
-        if (resultCode == RESULT_OK && requestCode == RECONHECEDOR_VOZ) {
-            ArrayList<String> reconhecido =
-                    data.getStringArrayListExtra( RecognizerIntent.EXTRA_RESULTS );
-            String ouvir = reconhecido.get(0);
-            prepararResposta(ouvir);
-        }
-    }
-
-    private void prepararResposta ( String ouvir ) {
-        String normalizar = Normalizer.normalize( ouvir, Normalizer.Form.NFD );
-        String sintilde = normalizar.replaceAll("[^\\p{ASCII}]", "" );
-
-
-        for (int i = 0; i < respostas.size(); i++) {
-            int resultado = sintilde.toLowerCase().indexOf(respostas.get(i).getFala());
-            if (resultado != -1) {
-                responder(respostas.get(i));
-                return;
-            }
-        }
-
-    }
-
-    private void responder (Resposta resposta) {
-        startActivity(resposta.getIntent());
-    }
-
-//mudar colocar dentro da resposta  a resposta e na fala o que é dito utilizar um set e um get para
-    //obter/mudificar a resposta
-
-    private void inicializar() {
-
-        respostas = provarDados();
-
-    }
-
-    private ArrayList <Resposta> provarDados() {
-        ArrayList <Resposta> resposta = new ArrayList <>();
-        String funcao;
-
-        //Navegção para o QR Code
-        resposta.add( new Resposta( "scan",
-                new Intent(this,
-               PlanoQRCodeActivity.class)));
-        resposta.add( new Resposta( "can",
-                new Intent(this,
-                PlanoQRCodeActivity.class)));
-        resposta.add( new Resposta( "qr",
-                new Intent(this,
-                PlanoQRCodeActivity.class)));
-        resposta.add( new Resposta( "code",
-                new Intent(this,
-                PlanoQRCodeActivity.class)));
-
-        //Navegação para o menu dos planos
-   /*     resposta.add( new Resposta( "tarefas",
-                listviewTarefas(),new Intent(this, null)));
-        resposta.add( new Resposta( "planos",
-                listviewTarefas(),new Intent(this, null)));
-
-*/
-        return respostas;
-    }
 }
 
